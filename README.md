@@ -4,7 +4,7 @@ A PHPUnit result printer that shows per-file test progress and execution times.
 ## Installation
 
 ```bash
-composer.phar require-dev diablomedia/phpunit-pretty-printer
+composer.phar require --dev diablomedia/phpunit-pretty-printer
 ```
 
 ## Usage
