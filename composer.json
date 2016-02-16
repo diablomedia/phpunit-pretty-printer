@@ -1,0 +1,24 @@
+{
+    "name": "diablomedia/phpunit-pretty-printer",
+    "type": "library",
+    "description": "A PHPUnit result printer that shows per-file test progress and execution times",
+    "keywords": ["phpunit","result", "printer", "unit", "test"],
+    "homepage": "https://github.com/diablomedia/phpunit-pretty-printer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ari Pringle",
+            "email": "ari@diablomedia.com",
+            "homepage": "https://diablomedia.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "phpunit/phpunit": ">=4.7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DiabloMedia\\PHPUnit\\Printer\\": "src/DiabloMedia/PHPUnit/Printer"
+        }
+    }
+}
