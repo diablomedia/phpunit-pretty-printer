@@ -2,7 +2,7 @@
 
 namespace DiabloMedia\PHPUnit\Printer;
 
-class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Framework_TestListener
+class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Framework\TestListener
 {
     protected $className;
     protected $previousClassName;
@@ -14,7 +14,7 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
             '0'    => 'fg-green',
     ];
 
-    public function startTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    public function startTestSuite(\PHPUnit\Framework\TestSuite $suite)
     {
         if ($this->debug && is_null($this->timeColors)) {
             if (defined('DIABLO_PRINTER_TIME_COLORS') && is_array(DIABLO_PRINTER_TIME_COLORS)) {
@@ -28,7 +28,7 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
         parent::startTestSuite($suite);
     }
 
-    public function startTest(\PHPUnit_Framework_Test $test)
+    public function startTest(\PHPUnit\Framework\Test $test)
     {
         $this->className = get_class($test);
         if (!$this->debug) {
@@ -36,7 +36,7 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
         }
     }
 
-    public function endTest(\PHPUnit_Framework_Test $test, $time)
+    public function endTest(\PHPUnit\Framework\Test $test, $time)
     {
         parent::endTest($test, $time);
 
@@ -51,7 +51,7 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
             $this->write(' ');
             $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
             $this->write(' ');
-            $this->writeWithColor('fg-cyan', \PHPUnit_Util_Test::describe($test), true);
+            $this->writeWithColor('fg-cyan', \PHPUnit\Util\Test::describe($test), true);
         }
     }
 
@@ -75,10 +75,10 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
         }
     }
 
-    protected function printDefectTrace(\PHPUnit_Framework_TestFailure $defect)
+    protected function printDefectTrace(\PHPUnit\Framework\TestFailure $defect)
     {
         $this->write($this->formatExceptionMsg($defect->getExceptionAsString()));
-        $trace = \PHPUnit_Util_Filter::getFilteredStacktrace(
+        $trace = \PHPUnit\Util\Filter::getFilteredStacktrace(
             $defect->thrownException()
         );
         if (!empty($trace)) {
@@ -88,8 +88,8 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
         while ($exception) {
             $this->write(
             "\nCaused by\n".
-            \PHPUnit_Framework_TestFailure::exceptionToString($e)."\n".
-            \PHPUnit_Util_Filter::getFilteredStacktrace($e)
+            \PHPUnit\Framework\TestFailure::exceptionToString($e)."\n".
+            \PHPUnit\Util\Filter::getFilteredStacktrace($e)
           );
             $exception = $exception->getPrevious();
         }
