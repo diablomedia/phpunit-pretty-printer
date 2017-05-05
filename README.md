@@ -9,7 +9,8 @@ composer.phar require --dev diablomedia/phpunit-pretty-printer
 
 ## Usage
 
-**Use phpunit binary installed by composer**
+**It's suggested to use the phpunit installed by composer.**
+
 You can specify the printer to use on the phpunit command line:
 
 ```bash
