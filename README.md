@@ -9,16 +9,17 @@ composer.phar require --dev diablomedia/phpunit-pretty-printer
 
 ## Usage
 
+**Use phpunit binary installed by composer**
 You can specify the printer to use on the phpunit command line:
 
 ```bash
-phpunit --printer 'DiabloMedia\PHPUnit\Printer\PrettyPrinter' tests/
+php vendor/bin/phpunit --printer 'DiabloMedia\PHPUnit\Printer\PrettyPrinter' tests/
 ```
 
 To see per-test execution times, use the `--debug` flag:
 
 ```bash
-phpunit --printer 'DiabloMedia\PHPUnit\Printer\PrettyPrinter' --debug tests/
+php vendor/bin/phpunit --printer 'DiabloMedia\PHPUnit\Printer\PrettyPrinter' --debug tests/
 ```
 
 Optionally, you can add it to your project's `phpunit.xml` file instead:
