@@ -51,7 +51,14 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             $this->write(' ');
             $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
             $this->write(' ');
-            $this->writeWithColor('fg-cyan', implode(',', \PHPUnit\Util\Test::describe($test)), true);
+
+            if (method_exists('\PHPUnit\Util\Test', 'describeAsString')) {
+                $msg = \PHPUnit\Util\Test::describeAsString($test);
+            } else {
+                $msg = \PHPUnit\Util\Test::describe($test); // PHPUnit <= 6
+            }
+
+            $this->writeWithColor('fg-cyan', $msg, true);
         }
     }
 
