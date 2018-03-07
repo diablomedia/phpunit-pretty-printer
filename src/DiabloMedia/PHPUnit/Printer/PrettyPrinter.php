@@ -14,7 +14,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             '0'    => 'fg-green',
     ];
 
-    public function startTestSuite(\PHPUnit\Framework\TestSuite $suite)
+    public function startTestSuite(\PHPUnit\Framework\TestSuite $suite): void
     {
         if ($this->debug && is_null($this->timeColors)) {
             if (defined('DIABLO_PRINTER_TIME_COLORS') && is_array(DIABLO_PRINTER_TIME_COLORS)) {
@@ -28,7 +28,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         parent::startTestSuite($suite);
     }
 
-    public function startTest(\PHPUnit\Framework\Test $test)
+    public function startTest(\PHPUnit\Framework\Test $test): void
     {
         $this->className = get_class($test);
         if (!$this->debug) {
@@ -36,7 +36,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         }
     }
 
-    public function endTest(\PHPUnit\Framework\Test $test, $time)
+    public function endTest(\PHPUnit\Framework\Test $test, $time): void
     {
         parent::endTest($test, $time);
 
@@ -51,11 +51,11 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             $this->write(' ');
             $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
             $this->write(' ');
-            $this->writeWithColor('fg-cyan', \PHPUnit\Util\Test::describe($test), true);
+            $this->writeWithColor('fg-cyan', implode(',', \PHPUnit\Util\Test::describe($test)), true);
         }
     }
 
-    protected function writeProgress($progress)
+    protected function writeProgress($progress): void
     {
         if ($this->debug) {
             $this->write($progress);
@@ -75,7 +75,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         }
     }
 
-    protected function printDefectTrace(\PHPUnit\Framework\TestFailure $defect)
+    protected function printDefectTrace(\PHPUnit\Framework\TestFailure $defect): void
     {
         $this->write($this->formatExceptionMsg($defect->getExceptionAsString()));
         $trace = \PHPUnit\Util\Filter::getFilteredStacktrace(
