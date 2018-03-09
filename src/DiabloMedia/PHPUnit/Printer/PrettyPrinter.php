@@ -2,6 +2,9 @@
 
 namespace DiabloMedia\PHPUnit\Printer;
 
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Runner\PhptTestCase;
+
 class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Framework\TestListener
 {
     protected $className;
@@ -38,9 +41,10 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
 
     public function endTest(\PHPUnit\Framework\Test $test, $time): void
     {
-        parent::endTest($test, $time);
 
-        if ($this->debug) {
+        if (!$this->debug) {
+            parent::endTest($test, $time);
+        } else {
             foreach ($this->timeColors as $threshold => $color) {
                 if ($time >= $threshold) {
                     $timeColor = $color;
@@ -51,7 +55,28 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             $this->write(' ');
             $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
             $this->write(' ');
-            $this->writeWithColor('fg-cyan', implode(',', \PHPUnit\Util\Test::describe($test)), true);
+
+            if (method_exists('\PHPUnit\Util\Test', 'describeAsString')) {
+                $msg = \PHPUnit\Util\Test::describeAsString($test);
+            } else {
+                $msg = \PHPUnit\Util\Test::describe($test); // PHPUnit <= 6
+            }
+
+            $this->writeWithColor('fg-cyan', $msg, true);
+
+            // Necessary part from \PHPUnit\TextUI\ResultPrinter::endTest
+            if ($test instanceof TestCase) {
+                $this->numAssertions += $test->getNumAssertions();
+            } elseif ($test instanceof PhptTestCase) {
+                $this->numAssertions++;
+            }
+
+            $this->lastTestFailed = false;
+            if ($test instanceof TestCase) {
+                if (!$test->hasExpectationOnOutput()) {
+                    $this->write($test->getActualOutput());
+                }
+            }
         }
     }
 
