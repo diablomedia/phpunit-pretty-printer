@@ -113,14 +113,14 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         while ($exception) {
             $this->write(
             "\nCaused by\n".
-            \PHPUnit\Framework\TestFailure::exceptionToString($e)."\n".
-            \PHPUnit\Util\Filter::getFilteredStacktrace($e)
+            \PHPUnit\Framework\TestFailure::exceptionToString($exception)."\n".
+            \PHPUnit\Util\Filter::getFilteredStacktrace($exception)
           );
             $exception = $exception->getPrevious();
         }
     }
 
-    protected function formatExceptionMsg($exceptionMessage)
+    protected function formatExceptionMsg(string $exceptionMessage): string
     {
         $exceptionMessage = str_replace("+++ Actual\n", '', $exceptionMessage);
         $exceptionMessage = str_replace("--- Expected\n", '', $exceptionMessage);
