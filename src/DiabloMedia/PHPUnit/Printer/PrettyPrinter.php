@@ -39,7 +39,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         }
     }
 
-    public function endTest(\PHPUnit\Framework\Test $test, $time): void
+    public function endTest(\PHPUnit\Framework\Test $test, float $time): void
     {
 
         if (!$this->debug) {
