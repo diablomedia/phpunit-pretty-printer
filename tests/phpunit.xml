@@ -1,0 +1,7 @@
+<phpunit bootstrap="../vendor/autoload.php" colors="true" printerClass="DiabloMedia\PHPUnit\Printer\PrettyPrinter">
+    <testsuites>
+        <testsuite name="default">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

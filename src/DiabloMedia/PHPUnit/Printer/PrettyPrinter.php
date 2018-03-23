@@ -56,7 +56,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             }
 
             $this->write(' ');
-            $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
+            $this->writeWithColor($timeColor, '[' . number_format($time, 3) . 's]', false);
             $this->write(' ');
 
             if (method_exists('\PHPUnit\Util\Test', 'describeAsString')) {
@@ -91,7 +91,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         } else {
             if ($this->previousClassName !== $this->className) {
                 $this->write("\n");
-                $this->writeWithColor('fg-cyan', str_pad($this->className, 50, ' ', STR_PAD_LEFT).' ', false);
+                $this->writeWithColor('fg-cyan', str_pad($this->className, 50, ' ', STR_PAD_LEFT) . ' ', false);
             }
             $this->previousClassName = $this->className;
 
@@ -110,13 +110,13 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             $defect->thrownException()
         );
         if (!empty($trace)) {
-            $this->write("\n".$trace);
+            $this->write("\n" . $trace);
         }
         $exception = $defect->thrownException()->getPrevious();
         while ($exception) {
             $this->write(
-            "\nCaused by\n".
-            \PHPUnit\Framework\TestFailure::exceptionToString($exception)."\n".
+            "\nCaused by\n" .
+            \PHPUnit\Framework\TestFailure::exceptionToString($exception) . "\n" .
             \PHPUnit\Util\Filter::getFilteredStacktrace($exception)
           );
             $exception = $exception->getPrevious();

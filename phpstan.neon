@@ -1,0 +1,8 @@
+parameters:
+    ignoreErrors:
+        # this constant (and resulting variable) is user-defined in PHPUnit configuration/bootstrap
+        - '#Constant DIABLO_PRINTER_TIME_COLORS not found.#'
+        - '#Variable \$timeColor might not be defined.#'
+
+        # \PHPUnit\Util\Test::describe is only called with PHPUnit 6, where it returns a string, but it returns an array in PHPUnit 7
+        - '#Parameter \#2 \$buffer of method PHPUnit\TextUI\ResultPrinter::writeWithColor() expects string, array|string given.#'
