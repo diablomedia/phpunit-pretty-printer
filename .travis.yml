@@ -13,7 +13,8 @@ install:
 
 stages:
   - test
-  - test with prefer-lowest
+  - 7.1 test with prefer-lowest
+  - 7.2 test with prefer-lowest
   - check style
   - phpstan analysis
 
@@ -25,12 +26,16 @@ jobs:
   allow_failures:
     - php: nightly
   include:
-    - stage: test with prefer-lowest
+    - stage: 7.1 test with prefer-lowest
       install:
         - travis_retry composer update --no-interaction --prefer-lowest
-      php:
-        - 7.1
-        - 7.2
+      php: 7.1
+      script:
+        - composer test
+    - stage: 7.2 test with prefer-lowest
+      install:
+        - travis_retry composer update --no-interaction --prefer-lowest
+      php: 7.2
       script:
         - composer test
     - stage: check style
