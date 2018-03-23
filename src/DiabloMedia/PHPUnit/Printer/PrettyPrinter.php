@@ -41,7 +41,6 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
 
     public function endTest(\PHPUnit\Framework\Test $test, float $time): void
     {
-
         if (!$this->debug) {
             parent::endTest($test, $time);
         } else {
@@ -50,6 +49,10 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
                     $timeColor = $color;
                     break;
                 }
+            }
+
+            if (!$this->lastTestFailed) {
+                $this->writeProgress('.');
             }
 
             $this->write(' ');
