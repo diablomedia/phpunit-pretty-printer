@@ -1,4 +1,9 @@
 # phpunit-pretty-printer
+[![Build Status](https://api.travis-ci.org/diablomedia/phpunit-pretty-printer.svg?branch=master)](https://travis-ci.org/diablomedia/phpunit-pretty-printer)
+[![Latest Stable Version](https://poser.pugx.org/diablomedia/phpunit-pretty-printer/v/stable)](https://packagist.org/packages/diablomedia/phpunit-pretty-printer)
+[![Total Downloads](https://poser.pugx.org/diablomedia/phpunit-pretty-printer/downloads)](https://packagist.org/packages/diablomedia/phpunit-pretty-printer)
+[![License](https://poser.pugx.org/diablomedia/phpunit-pretty-printer/license)](https://packagist.org/packages/diablomedia/phpunit-pretty-printer)
+
 A PHPUnit result printer that shows per-file test progress and execution times.
 
 ## Installation
