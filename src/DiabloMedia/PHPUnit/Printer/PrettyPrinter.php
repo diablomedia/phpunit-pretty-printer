@@ -83,7 +83,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         }
     }
 
-    protected function writeProgress($progress): void
+    protected function writeProgress(string $progress): void
     {
         if ($this->debug) {
             $this->write($progress);
