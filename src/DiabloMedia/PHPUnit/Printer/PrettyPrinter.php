@@ -59,11 +59,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
             $this->writeWithColor($timeColor, '[' . number_format($time, 3) . 's]', false);
             $this->write(' ');
 
-            if (method_exists('\PHPUnit\Util\Test', 'describeAsString')) {
-                $msg = \PHPUnit\Util\Test::describeAsString($test);
-            } else {
-                $msg = \PHPUnit\Util\Test::describe($test); // PHPUnit <= 6
-            }
+            $msg = \PHPUnit\Util\Test::describeAsString($test);
 
             $this->writeWithColor('fg-cyan', $msg, true);
 
@@ -130,10 +126,10 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         $exceptionMessage = str_replace('@@ @@', '', $exceptionMessage);
 
         if ($this->colors) {
-            $exceptionMessage = preg_replace('/^(Exception.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage);
-            $exceptionMessage = preg_replace('/(Failed.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage);
-            $exceptionMessage = preg_replace("/(\-+.*)$/m", "\033[01;32m$1\033[0m", $exceptionMessage);
-            $exceptionMessage = preg_replace("/(\++.*)$/m", "\033[01;31m$1\033[0m", $exceptionMessage);
+            $exceptionMessage = preg_replace('/^(Exception.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
+            $exceptionMessage = preg_replace('/(Failed.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
+            $exceptionMessage = preg_replace("/(\-+.*)$/m", "\033[01;32m$1\033[0m", $exceptionMessage) ?? '';
+            $exceptionMessage = preg_replace("/(\++.*)$/m", "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
         }
 
         return $exceptionMessage;
