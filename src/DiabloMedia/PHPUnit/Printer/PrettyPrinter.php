@@ -111,7 +111,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
         $exception = $defect->thrownException()->getPrevious();
         while ($exception) {
             $this->write(
-            "\nCaused by\n" .
+                "\nCaused by\n" .
             \PHPUnit\Framework\TestFailure::exceptionToString($exception) . "\n" .
             \PHPUnit\Util\Filter::getFilteredStacktrace($exception)
           );
