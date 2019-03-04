@@ -7,6 +7,10 @@ php:
   - 7.4snapshot
   - nightly
 
+branches:
+  only:
+    master
+
 before_install:
   - travis_retry composer self-update
 
