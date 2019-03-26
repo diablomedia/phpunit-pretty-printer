@@ -127,9 +127,9 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
 
         if ($this->colors) {
             $exceptionMessage = preg_replace('/^(Exception.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
-            $exceptionMessage = preg_replace('/(Failed.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
-            $exceptionMessage = preg_replace("/(\-+.*)$/m", "\033[01;32m$1\033[0m", $exceptionMessage) ?? '';
-            $exceptionMessage = preg_replace("/(\++.*)$/m", "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
+            $exceptionMessage = preg_replace('/^(Failed.*)$/m', "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
+            $exceptionMessage = preg_replace("/^(\-+.*)$/m", "\033[01;32m$1\033[0m", $exceptionMessage) ?? '';
+            $exceptionMessage = preg_replace("/^(\++.*)$/m", "\033[01;31m$1\033[0m", $exceptionMessage) ?? '';
         }
 
         return $exceptionMessage;
