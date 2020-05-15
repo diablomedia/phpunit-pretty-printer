@@ -3,21 +3,39 @@
 namespace DiabloMedia\PHPUnit\Printer;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
 use PHPUnit\Runner\PhptTestCase;
 
 class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Framework\TestListener
 {
+    /**
+     * @var string
+     */
     protected $className;
+
+    /**
+     * @var string
+     */
     protected $previousClassName;
+
+    /**
+     * @var string[]|null
+     */
     protected $timeColors;
 
+    /**
+     * @var string[]
+     */
     protected $defaultTimeColors = [
             '1'    => 'fg-red',
             '.400' => 'fg-yellow',
             '0'    => 'fg-green',
     ];
 
-    public function startTestSuite(\PHPUnit\Framework\TestSuite $suite): void
+    /**
+     * @param TestSuite<TestCase> $suite
+     */
+    public function startTestSuite(TestSuite $suite): void
     {
         if ($this->debug && is_null($this->timeColors)) {
             if (defined('DIABLO_PRINTER_TIME_COLORS') && is_array(DIABLO_PRINTER_TIME_COLORS)) {
@@ -114,7 +132,7 @@ class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Fr
                 "\nCaused by\n" .
             \PHPUnit\Framework\TestFailure::exceptionToString($exception) . "\n" .
             \PHPUnit\Util\Filter::getFilteredStacktrace($exception)
-          );
+            );
             $exception = $exception->getPrevious();
         }
     }
