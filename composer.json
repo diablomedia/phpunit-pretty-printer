@@ -23,9 +23,9 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.11",
+        "friendsofphp/php-cs-fixer": "2.16.3",
         "nazar-pc/phpt-tests-runner": "^1.4.0",
-        "phpstan/phpstan": "^0.11.0 || ^0.12.0"
+        "phpstan/phpstan": "0.12.25"
     },
     "scripts": {
         "check-style": "php-cs-fixer fix --dry-run -vv",
