@@ -23,7 +23,7 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "2.16.3",
+        "friendsofphp/php-cs-fixer": "2.16.4",
         "nazar-pc/phpt-tests-runner": "^1.4.0",
         "phpstan/phpstan": "0.12.46"
     },
