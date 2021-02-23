@@ -5,8 +5,10 @@ namespace DiabloMedia\PHPUnit\Printer;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\Runner\PhptTestCase;
+use PHPUnit\TextUI\DefaultResultPrinter;
+use PHPUnit\Framework\TestListener;
 
-class PrettyPrinter extends \PHPUnit\TextUI\ResultPrinter implements \PHPUnit\Framework\TestListener
+class PrettyPrinter extends DefaultResultPrinter implements TestListener
 {
     /**
      * @var string
