@@ -40,6 +40,8 @@ jobs:
             - name: Static Analysis
               run: composer static-analysis
             - name: Code Style Check
+              env:
+                  PHP_CS_FIXER_IGNORE_ENV: true
               run: composer check-style -- --format=checkstyle | cs2pr
             - name: Test
               run: composer tests
