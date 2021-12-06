@@ -13,7 +13,7 @@ jobs:
             fail-fast: false
             matrix:
                 operating-system: [ubuntu-latest]
-                php-versions: ['7.1', '7.2', '7.3', '7.4']
+                php-versions: ['7.3', '7.4', '8.0', '8.1']
                 composer-args: ['', '--prefer-lowest']
         runs-on: ${{ matrix.operating-system }}
         steps:
@@ -40,19 +40,8 @@ jobs:
             - name: Static Analysis
               run: composer static-analysis
             - name: Code Style Check
+              env:
+                  PHP_CS_FIXER_IGNORE_ENV: true
               run: composer check-style -- --format=checkstyle | cs2pr
             - name: Test
               run: composer tests
-    merge-me:
-        name: Merge me!
-        needs:
-            - build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Merge me!
-              uses: ridedott/merge-me-action@master
-              with:
-                  # This must be used as GitHub Actions token does not support
-                  # pushing to protected branches.
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  GITHUB_LOGIN: 'dependabot[bot]'

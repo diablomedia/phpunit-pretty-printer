@@ -7,8 +7,8 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
 ;
 
-return PhpCsFixer\Config::create()
-    ->setRiskyAllowed(true)
+$config = new PhpCsFixer\Config();
+return $config->setRiskyAllowed(true)
     ->setRules([
         '@PSR2' => true,
         '@PHP70Migration' => true,
@@ -16,6 +16,10 @@ return PhpCsFixer\Config::create()
         '@PHP71Migration:risky' => true,
         '@PHPUnit60Migration:risky' => true,
         'binary_operator_spaces' => ['align_double_arrow' => true, 'align_equals' => true],
+        'binary_operator_spaces' => array(
+            'default'   => 'align_single_space_minimal',
+            'operators' => array('||' => null, '&&' => null)
+        ),
         'single_quote' => false,
         'array_syntax' => ['syntax' => 'short'],
         'concat_space' => ['spacing' => 'one'],
